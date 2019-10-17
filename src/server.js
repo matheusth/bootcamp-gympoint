@@ -1,8 +1,4 @@
-import express from 'express';
+import app from './app';
+import './database';
 
-const app = express();
-
-app.get('/', () => {
-  console.log('hello world');
-});
 app.listen(3000);
