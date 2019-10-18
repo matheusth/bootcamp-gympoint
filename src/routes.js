@@ -7,4 +7,5 @@ const routes = new Router();
 routes.use(auth);
 routes.post('/sessions', session.store);
 routes.post('/students', student.store);
+routes.put('/students/:id', student.update);
 export default routes;

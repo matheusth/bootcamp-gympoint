@@ -8,8 +8,20 @@ class StudentController {
         .status(400)
         .json({ error: 'A student with this email already exists' });
     }
-    student = await Student.create(req.body);
+    student = await Student.create({ ...req.body, created_by: req.userId });
     return res.json(student);
+  }
+
+  async update(req, res) {
+    const student = await Student.findByPk(req.params.id);
+    if (!student) {
+      res.status(404).json({ error: 'User not found!' });
+    }
+    if (student.created_by !== req.userId && req.userId !== 1) {
+      res.status(401).json({ error: 'You are not allowed to edit this user' });
+    }
+    student.update(req.body);
+    res.json(student);
   }
 }
 
