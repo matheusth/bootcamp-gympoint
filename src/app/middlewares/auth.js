@@ -16,5 +16,4 @@ export default async (req, res, next) => {
   } catch (err) {
     return res.status(401).json({ error: 'invalid token' });
   }
-  req.userId = jwt.decode(token, authConfig.secret).id;
 };

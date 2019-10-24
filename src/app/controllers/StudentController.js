@@ -15,13 +15,15 @@ class StudentController {
   async update(req, res) {
     const student = await Student.findByPk(req.params.id);
     if (!student) {
-      res.status(404).json({ error: 'User not found!' });
+      return res.status(404).json({ error: 'User not found!' });
     }
     if (student.created_by !== req.userId && req.userId !== 1) {
-      res.status(401).json({ error: 'You are not allowed to edit this user' });
+      return res
+        .status(401)
+        .json({ error: 'You are not allowed to edit this user' });
     }
-    student.update(req.body);
-    res.json(student);
+    await student.update(req.body);
+    return res.json(student);
   }
 }
 
