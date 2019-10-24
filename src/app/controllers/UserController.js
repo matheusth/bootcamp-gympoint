@@ -8,7 +8,7 @@ class UserController {
         .status(400)
         .json({ error: 'A user with this email already exists' });
     }
-    user = await User.create({ ...req.body, created_by: req.userId });
+    user = await User.create(req.body);
     return res.json(user);
   }
 

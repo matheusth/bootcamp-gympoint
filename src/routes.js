@@ -18,5 +18,7 @@ routes.delete('/users', user.delete);
 // students routes
 routes.post('/students', student.store);
 routes.put('/students/:id', student.update);
+routes.delete('/students/:id', student.delete);
+routes.get('/students/', student.getAll);
 
 export default routes;
