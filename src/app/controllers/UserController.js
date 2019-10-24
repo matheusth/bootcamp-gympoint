@@ -35,7 +35,7 @@ class UserController {
   async delete(req, res) {
     const user = await User.findByPk(req.userId);
     user.destroy();
-    return res.json({ message: 'You just delete your account' });
+    return res.json({ message: 'User account successfully deleted' });
   }
 }
 export default new UserController();
